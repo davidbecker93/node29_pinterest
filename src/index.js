@@ -9,7 +9,7 @@ app.use(express.static(".")); // định vị  để load tài nguyên từ sour
 const cors = require('cors');
 app.use(cors()); // cho phép tất cả FE truy cập vào API của BE
 // tạo server localhost với port 8080 => localhost:8080
-app.listen(80);
+app.listen(8080);
 
 // yarn install = npm i
 // yarn start
