@@ -34,11 +34,12 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const options = {
     definition: {
         info: {
-            title: "node 29",
+            title: "node29_pinterest",
             version: "1.1.3"
         }
     },
     apis: ["src/swagger/index.js"]
+    
 }
 
 const specs = swaggerJsDoc(options);

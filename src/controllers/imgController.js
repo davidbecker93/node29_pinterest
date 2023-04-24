@@ -118,7 +118,7 @@ const getCommentImg = async (req,res) => {
 
 const getSaveImg = async (req, res) => {
     try {
-      const {nguoi_dung_id, hinh_id} = req.body;
+      const {nguoi_dung_id, hinh_id} = req.query;
       const saveModel = {
         nguoi_dung_id,
         hinh_id,

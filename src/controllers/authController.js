@@ -1,3 +1,4 @@
+
 const { checkToken } = require('../config/jwt');
 
 const authentication = (req, res, next) => {

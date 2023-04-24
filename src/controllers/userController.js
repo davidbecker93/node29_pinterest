@@ -150,6 +150,21 @@ const getImgCreate = async (req,res) => {
         failCode(res, "Lỗi BE");
     }
 };
+const removeImg = async (req, res) => {
+    try {
+        const { hinh_id } = req.params;
+        const { nguoi_dung_id } = req.query;
+        const image = await model.hinh_anh.findOne({ where: { hinh_id, nguoi_dung_id } });
+        if (image) {
+            await model.hinh_anh.destroy({ where: { hinh_id, nguoi_dung_id } });
+            successCode(res, "", "Image removed successfully");
+        } else {
+            errorCode(res, "", "Image not found");
+        }
+    } catch (err) {
+        failCode(res, "Lỗi BE");
+    }
+};
 
 
 
@@ -160,7 +175,8 @@ module.exports = {
     updateUser,
     signUp,
     getImgSave,
-    getImgCreate
+    getImgCreate,
+    removeImg
 }
 
 // yarn add bcrypt
