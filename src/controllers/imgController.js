@@ -12,7 +12,7 @@ const checkData = async (data, res) => {
     } else {
         errorCode(res,'No result matched');
     }
-}
+};
 
 const getImg = async (req, res) => {
     try {
@@ -84,7 +84,7 @@ const searchImg = async (req, res) => {
     }
 };
 
-const detailImg = async (req,res) => {
+const getDetailImg = async (req,res) => {
     try {
         const { hinh_id } = req.params;
         const data = await model.hinh_anh.findOne({
@@ -100,7 +100,7 @@ const detailImg = async (req,res) => {
     }
 };
 
-const commentImg = async (req,res) => {
+const getCommentImg = async (req,res) => {
     try {
         const { hinh_id } = req.params;
         const data = await model.binh_luan.findAll({
@@ -116,5 +116,52 @@ const commentImg = async (req,res) => {
     }
 };
 
-module.exports = { getImg, createImg, updateImg, removeImg, searchImg,detailImg,commentImg }
+const getSaveImg = async (req, res) => {
+    try {
+      const {nguoi_dung_id, hinh_id} = req.body;
+      const saveModel = {
+        nguoi_dung_id,
+        hinh_id,
+        ngay_luu: Date.now()
+    }
+      const data = await model.luu_anh.findOne({
+        where: {
+            nguoi_dung_id,
+            hinh_id
+        }
+      });
+      if (!data) {
+        await model.luu_anh.create(saveModel);
+        return successCode(res, "Get saved images successful");
+      } else {
+        await model.luu_anh.destroy({
+          where: {nguoi_dung_id, hinh_id}
+        });
+        return successCode(res, "Unsaved images successful");
+      }
+    } catch (err) {
+        failCode(res, "Lỗi BE");
+    }
+};
+
+const commentImg = async (req,res) => {
+    try {
+        const { nguoi_dung_id, hinh_id, noi_dung } = req.body;
+
+        let newComment = {
+            nguoi_dung_id,
+            hinh_id,
+            ngay_binh_luan: Date.now(),
+            noi_dung
+        }
+        let data = await model.binh_luan.create(newComment);
+        checkData(data, res);
+    } catch (err) {
+        failCode(res, "Lỗi BE");
+    }
+};
+
+
+module.exports = { getImg, createImg, updateImg, removeImg, searchImg,getDetailImg,getCommentImg,getSaveImg,commentImg }
+
 

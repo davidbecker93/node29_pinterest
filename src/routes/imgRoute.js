@@ -1,7 +1,7 @@
 const express = require('express');
 const imgRouter = express.Router();
 
-const { getImg, createImg, updateImg, removeImg,searchImg, detailImg, commentImg } = require('../controllers/imgController');
+const { getImg, createImg, updateImg, removeImg,searchImg, getDetailImg, getCommentImg, getSaveImg, commentImg } = require('../controllers/imgController');
 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -77,26 +77,21 @@ imgRouter.post('/create-img', upload.single('image'), createImg);
 
 const { authentication } = require('../controllers/authController');
 
-// tạo API 
-// API get img
 imgRouter.get("/get", getImg);
 
-// API create img
-// imgRouter.post("/create-img", createImg);
-
-// API update img
 imgRouter.put("/update/:hinh_id", updateImg);
 
-// API delete img
 imgRouter.delete("/remove/:hinh_id", removeImg);
 
-// API search Images by name
 imgRouter.get("/search/:keyword", searchImg);
 
-//API get detail images
-imgRouter.get("/detail/:hinh_id",detailImg);
+imgRouter.get("/detail/:hinh_id",getDetailImg);
 
-imgRouter.get("/comment/:hinh_id",commentImg);
+imgRouter.get("/comment/:hinh_id",getCommentImg);
+
+imgRouter.post("/save-img",getSaveImg);
+
+imgRouter.post("/comment-img",commentImg);
 
 
 module.exports = imgRouter;

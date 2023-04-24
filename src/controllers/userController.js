@@ -10,15 +10,24 @@ const bcrypt = require('bcrypt');
 // import hàm tạo token
 const { createToken } = require('../config/jwt');
 
+// Check if data exists
+const checkData = async (data, res) => {
+    if (data) {
+        successCode(res, data, "Success");
+    } else {
+        errorCode(res,'No result matched');
+    }
+};
+
 const userLogin = async (req, res) => {
 
     try {
 
         //  username và password
-        let { email, mat_khau } = req.body;
+        const { email, mat_khau } = req.body;
 
         // find user.email = email && user.pass_word=password
-        let checkUser = await model.nguoi_dung.findOne({
+        const checkUser = await model.nguoi_dung.findOne({
             where: {
                 email: email
             }
@@ -26,13 +35,13 @@ const userLogin = async (req, res) => {
 
         // user tồn tại > kiểm tra tiếp mật khẩu
         if (checkUser) {
-            let checkPass = bcrypt.compareSync(mat_khau, checkUser.mat_khau);
+            const checkPass = bcrypt.compareSync(mat_khau, checkUser.mat_khau);
 
             if (checkPass) {
-                let token = createToken(checkUser);
+                const token = createToken(checkUser);
                 successCode(res, token, "Login success");
             } else {
-                errorCode(res, "", "pass word not found");
+                errorCode(res, "", "password not found");
 
             }
 
@@ -50,9 +59,9 @@ const userLogin = async (req, res) => {
 const signUp = async (req, res) => {
 
     try {
-        let { ho_ten, email, mat_khau, tuoi } = req.body;
+        const { ho_ten, email, mat_khau, tuoi } = req.body;
         // Kiểm tra trùng email trước khi tạo user
-        let checkEmail = await model.nguoi_dung.findOne({
+        const checkEmail = await model.nguoi_dung.findOne({
             where: {
                 email: email
             }
@@ -62,30 +71,29 @@ const signUp = async (req, res) => {
             errorCode(res, "", "Email already exists");
         } else {
             // Email ko trùng thì tạo user
-            let data = {
+            const data = {
                 ho_ten,
                 email,
                 mat_khau: bcrypt.hashSync(mat_khau, 10),
                 tuoi
             };
             await model.nguoi_dung.create(data);
-            successCode(res, data, "Sign up success");
+            checkData(data, res);
         }
-    }
-    catch (err) {
+    } catch (err) {
         failCode(res, "Lỗi BE");
     }
-}
+};
 
 
 const getUser = async (req, res) => {
     try {
         let data = await model.nguoi_dung.findAll();
-        successCode(res, data, "Get user success");
+        checkData(data, res);
     } catch (err) {
         failCode(res, "Lỗi BE");
     }
-}
+};
 
 //update user
 const updateUser = async (req, res) => {
@@ -104,25 +112,56 @@ const updateUser = async (req, res) => {
             errorCode(res, "", "User not found");
         } else {
             // Update user data
-            user.ho_ten = ho_ten;
-            user.email = email;
-            user.mat_khau = bcrypt.hashSync(mat_khau, 10);
-            user.tuoi = tuoi;
+            const data = {
+                ho_ten,
+                email,
+                mat_khau: bcrypt.hashSync(mat_khau, 10),
+                tuoi
+            }
 
-            await user.save();
-            successCode(res, user, "User updated successfully");
+            await user.update(data); 
+            checkData(data, res);
         }
     } catch (err) {
         failCode(res, "Lỗi BE");
     }
-}
+};
+
+const getImgSave = async (req,res) => {
+    try {
+        const { id } = req.params;
+        const data = await model.luu_anh.findAll({
+            where: { nguoi_dung_id: id }
+        });
+        checkData(data, res);
+    } catch (err) {
+        failCode(res, "Lỗi BE");
+    }
+};
+
+const getImgCreate = async (req,res) => {
+    try {
+        const { id } = req.params;
+        const data = await model.hinh_anh.findAll({
+            where: { nguoi_dung_id: id }
+        });
+        checkData(data, res);
+    } catch (err) {
+        failCode(res, "Lỗi BE");
+    }
+};
+
+
 
 //commonjs 
 module.exports = {
     getUser,
     userLogin,
     updateUser,
-    signUp
+    signUp,
+    getImgSave,
+    getImgCreate
 }
 
 // yarn add bcrypt
+
