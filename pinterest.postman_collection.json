@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "0b458786-ec64-4498-bb2b-8b4651937c2e",
+		"name": "pinterest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23648969"
+	},
+	"item": [
+		{
+			"name": "get-user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/user/get-user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"get-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signUp-user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ho_ten\": \"admin\",\r\n    \"email\": \"van23@gmail.com\",\r\n    \"mat_khau\": \"1234\",\r\n    \"tuoi\": 18\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/user/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login-user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mat_khau\":\"1234\", \r\n    \"email\":\"van@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/user/update-user/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"update-user",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveImg-user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/user/saved/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"saved",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createImg-user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/user/saved/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"saved",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-img",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/D:/Download/1658307543910.png"
+						},
+						{
+							"key": "mo_ta",
+							"value": "sdqwf",
+							"type": "text"
+						},
+						{
+							"key": "nguoi_dung_id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/api/img/create-img",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"img",
+						"create-img"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-img",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/img/get-img",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"img",
+						"get-img"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-img",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ten_hinh\": \"hinh wdghacb\",\r\n    \"duong_dan\": \"ashdw liwnesdwk\",\r\n    \"mo_ta\": \"hinh rat dep\",\r\n    \"nguoi_dung_id\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/img/update/10",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"img",
+						"update",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove-img",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/img/remove/14",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"img",
+						"remove",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search-img",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"keyword\": \"hinh\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/img/search/hinh",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"img",
+						"search",
+						"hinh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "detail-img",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/img/detail/16",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"img",
+						"detail",
+						"16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "comment-img",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "save-img",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjIsImVtYWlsIjoidmFuQGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJFFDdW95UG9MUTY5ejBvdzE4cmtMYy5VcE1DRDd4ZFhUUkFvdTY3eWdjTHNHS3VrWE9qTXguIiwiaG9fdGVuIjoiYWRtaW4iLCJ0dW9pIjoxOCwiYW5oX2RhaV9kaWVuIjpudWxsfSwiaWF0IjoxNjgyMzQyNDkxLCJleHAiOjE2ODIzNDI3OTF9.0pndcu0Ve841-5y-H9_B0NjvujXjIEkLfd-iLjmPl5M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"hinh_id\":17,\r\n    \"nguoi_dung_id\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/img/save-img",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"img",
+						"save-img"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "comment-img",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nguoi_dung_id\":2,\r\n    \"hinh_id\":16,\r\n    \"noi_dung\":\"test thử\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/img/comment-img",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"img",
+						"comment-img"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
